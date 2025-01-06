@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="./css/Navbar.css">
+        <link rel="stylesheet" href="./css/body.css">
+        <link rel="stylesheet" href="./css/footer.css">
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const video1 = document.getElementById('video1');
+                const video2 = document.getElementById('video2');
+
+                if (video1 && video2) {
+                    // When the first video ends, scroll it left and start the second video
+                    video1.addEventListener('ended', () => {
+                        // Scroll the first video to the left (with transition)
+                        video1.style.transform = 'translateX(-100%)';
+
+                        // Wait for the scrolling to complete (2s for the transition)
+                        setTimeout(() => {
+                            // Make video2 visible and start playing
+                            video2.style.visibility = 'visible'; // Make video2 visible immediately
+                            video2.style.transform = 'translateX(0%)'; // Bring video2 to the screen
+
+                            // Set video2's playback position to 2 seconds (start from 2 seconds)
+                            video2.currentTime = 2; // Start video 2 from 2 seconds
+                            video2.play().then(() => {
+                                console.log("Video 2 is playing from 2 seconds");
+                            }).catch((error) => {
+                                console.error("Error starting video 2:", error);
+                            });
+                        }, 0); // The duration of the scrolling transition
+                    });
+
+                    // When video2 ends, reset it and bring video1 back
+                    video2.addEventListener('ended', () => {
+                        // Reset video2's position and hide it
+                        video2.style.transform = 'translateX(100%)'; // Move video2 off-screen to the right
+
+
+                        // Bring video1 back to the screen
+                        video1.style.transform = 'translateX(0%)'; // Move video1 back to its position
+                        video1.play(); // Play video1 again
+                    });
+                }
+
+
+
+                // JavaScript to detect scroll and add 'visible' class for image boxes
+                window.addEventListener('scroll', function () {
+                    var navbar = document.querySelector('.header-nav');
+                    var plywoodSection = document.querySelector('.plywood-section');
+                    var plywoodContent = document.querySelector('.plywood-content');
+                    var plywoodDescription = document.querySelector('.plywood-description');
+                    var box2 = document.querySelector('.box2');
+                    var imageBoxes = document.querySelectorAll('.box');
+
+                    // Add 'scrolled' class to navbar
+                    if (window.scrollY > 50) {
+                        navbar.classList.add('scrolled');
+                    } else {
+                        navbar.classList.remove('scrolled');
+                    }
+
+                    // Handle plywood section visibility
+                    var plywoodSectionTop = plywoodSection.getBoundingClientRect().top;
+                    var windowHeight = window.innerHeight;
+
+                    if (plywoodSectionTop < windowHeight * 0.7) {
+                        plywoodContent.classList.add('visible');
+                    } else {
+                        plywoodContent.classList.remove('visible');
+                    }
+
+                    if (plywoodSectionTop < windowHeight * 0.5) {
+                        plywoodDescription.classList.add('visible');
+                    } else {
+                        plywoodDescription.classList.remove('visible');
+                    }
+
+                    // Handle visibility of box2 first
+                    var box2Top = box2.getBoundingClientRect().top;
+                    if (box2Top < windowHeight * 0.7) {
+                        box2.classList.add('visible');
+                    } else {
+                        box2.classList.remove('visible');
+                    }
+
+                    // Handle visibility of all other boxes after box2
+                    imageBoxes.forEach(function (box) {
+                        var boxTop = box.getBoundingClientRect().top;
+                        if (boxTop < windowHeight * 0.5) {
+                            box.classList.add('visible');
+                        } else {
+                            box.classList.remove('visible');
+                        }
+                    });
+                });
+            });
+
+        </script>
+    </head>
+<body>
+  
+<section class="header-nav">
+    <div class="topnav">
+        <!-- Left part: Logo and Firm Name -->
+        <div class="logo">
+            <img src="assets/images/logo.svg" alt="Logo" class="logo-img"> <!-- Add your logo image path here -->
+        </div>
+        <!-- Right part: Links to other pages -->
+        <div class="nav-links">
+            <a href="home.html">Home</a>
+            <a href="Shop.html">Shop</a>
+            <a href="About.html" >About</a>
+            <a href="Contact.html" >Contact</a>
+        </div>
+    </div>
+</section>
+
+<div class="video-container">
+    <video id="video1" autoplay muted>
+        <source src="./assets/videos/vid1.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <video id="video2" preload="auto" muted>
+        <source src="./assets/videos/vid2.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <!-- Add this div for the centered text -->
+    <div class="video-text">
+        <h1>Ganapati Build Mart</h1> <!-- Customize the text -->
+    </div>
+</div>
+
+
+<!-- New Section: Plywood -->
+<section class="plywood-section">
+    <div class="plywood-content">
+        <h2>Home Interior and Hardware Products</h2>
+    </div>
+    <div class="plywood-description">
+        <p>We offer top-quality home design products from leading brands to help you craft beautiful and inspired living spaces.</p>
+    </div>
+    <!-- New section for 3 image boxes -->
+    <div class="image-box-container">
+        <div class="box">
+            <div class="image-box left-box">
+                <img src="assets/images/plywood.svg" alt="Box 1">
+            </div>
+            <p class="image-text">Plywood</p> <!-- Add your text here -->
+        </div>
+        <div class="box2">
+            <div class="image-box center-box">
+                <img src="assets/images/vinear.svg" alt="Box 2">
+            </div>
+            <p class="image-text">Veneer</p> <!-- Add your text here -->
+        </div>
+        <div class="box">
+            <div class="image-box right-box">
+                <img src="assets/images/mica.svg" alt="Box 3">
+            </div>
+            <p class="image-text">Mica</p> <!-- Add your text here -->
+        </div>
+        
+    </div>
+    <button>Load More Products</button>
+</section>
+<section class="brands-with-us">
+    <h2>Brands With Us</h2>
+    <div class="brand-container">
+        <!-- Brand Box 1 -->
+        <div class="brand-box">
+            <div class="brand-logo">
+                <img src="assets/images/logo.svg" alt="Brand 1">
+            </div>
+        </div>
+        <!-- Brand Box 2 -->
+        <div class="brand-box">
+            <div class="brand-logo">
+                <img src="assets/images/logo.svg" alt="Brand 2">
+            </div>
+        </div>
+        <!-- Brand Box 3 -->
+        <div class="brand-box">
+            <div class="brand-logo">
+                <img src="assets/images/logo.svg" alt="Brand 3">
+            </div>
+        </div>
+        <!-- Brand Box 4 -->
+        <div class="brand-box">
+            <div class="brand-logo">
+                <img src="assets/images/logo.svg" alt="Brand 4">
+            </div>
+        </div>
+        <!-- Brand Box 5 -->
+        <div class="brand-box">
+            <div class="brand-logo">
+                <img src="assets/images/logo.svg" alt="Brand 5">
+            </div>
+        </div>
+        <!-- Brand Box 6 -->
+        <div class="brand-box">
+            <div class="brand-logo">
+                <img src="assets/images/logo.svg" alt="Brand 6">
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<footer>
+    <div class="footer-container">
+        <div class="footer-left">
+            <div class="footer-logo">
+                <a href="/">
+                    <img src="./assets/images/logo.svg" alt="Company Logo" />
+                </a>
+            </div>
+            <div class="footer-address">
+                <p>Canal Road, Behind J K Petrol Pump, <br>
+                    Brahmani Tarang,<br>
+                    Vedvyas, Rourkela - 769004 </p>
+                <p>Email: gbmrkl@gmail.com</p>
+                <p>Phone: +91 9437040874</p>
+            </div>
+        </div>
+        <div class="footer-center">
+            <h3>Links</h3>
+            <ul>
+                <li><a href="/about-us">About Us</a></li>
+                <li><a href="/services">Services</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li><a href="/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/terms-of-service">Terms of Service</a></li>
+            </ul>
+        </div>
+        <div class="footer-right">
+            <h3>Products</h3>
+            <ul>
+                <li><a href="/product1">Product 1</a></li>
+                <li><a href="/product2">Product 2</a></li>
+                <li><a href="/product3">Product 3</a></li>
+                <li><a href="/product4">Product 4</a></li>
+                <li><a href="/product5">Product 5</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2025 Your Company. All rights reserved.</p>
+    </div>
+</footer>
+</body>
+</html>

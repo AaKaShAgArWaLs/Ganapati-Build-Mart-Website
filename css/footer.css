@@ -1,0 +1,89 @@
+/* Simple and Elegant Footer */
+footer {
+    background-color: #f7f7f7; /* Light background */
+    color: #333; /* Dark text color for contrast */
+    padding: 40px 20px;
+    font-family: 'Arial', sans-serif;
+    text-align: left; /* Align all text to the left */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+.footer-left, .footer-center, .footer-right {
+    flex: 1;
+    min-width: 200px;
+    margin-bottom: 20px;
+}
+
+.footer-logo img {
+    max-width: 150px;
+    margin-bottom: 10px;
+}
+
+.footer-address p {
+    font-size: 14px;
+    color: #555;
+    margin: 5px 0;
+}
+
+.footer-center ul, .footer-right ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-center li, .footer-right li {
+    margin: 10px 0;
+}
+
+.footer-center a, .footer-right a {
+    color: #333;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.footer-center a:hover, .footer-right a:hover {
+    color: #3498db; /* Highlight color on hover */
+}
+
+.footer-center h3, .footer-right h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #515151bf; /* Color for headings */
+}
+
+.footer-bottom {
+    margin-top: 30px;
+    font-size: 14px;
+    color: #777;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+    }
+
+    .footer-left, .footer-center, .footer-right {
+        margin-bottom: 20px;
+        flex: 1;
+    }
+
+    .footer-center ul, .footer-right ul {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+}
