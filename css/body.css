@@ -1,3 +1,5 @@
+@import url(https://db.onlinewebfonts.com/c/7d06f75f5be76c96979e0936770794c2?family=Calendas-Plus);
+
 /* Styling for the Plywood section */
 .plywood-section {
     padding: 50px 20px;
@@ -229,11 +231,14 @@ video {
 
 .video-container .video-text {
     position: absolute;
-    color: white; /* Text color */
+    color: #f7f7f7; /* Text color */
     font-size: 2rem; /* Adjust font size as needed */
     font-weight: bold;
     text-align: center;
     z-index: 10; /* Ensure text appears above the video */
+    font-family: "Calendas-Plus";
+    background-color: rgba(51, 51, 51, 0.4);
+    
 }
 
 
