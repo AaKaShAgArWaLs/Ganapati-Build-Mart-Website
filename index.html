@@ -7,101 +7,7 @@
         <link rel="stylesheet" href="./css/Navbar.css">
         <link rel="stylesheet" href="./css/body.css">
         <link rel="stylesheet" href="./css/footer.css">
-
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                const video1 = document.getElementById('video1');
-                const video2 = document.getElementById('video2');
-
-                if (video1 && video2) {
-                    // When the first video ends, scroll it left and start the second video
-                    video1.addEventListener('ended', () => {
-                        // Scroll the first video to the left (with transition)
-                        video1.style.transform = 'translateX(-100%)';
-
-                        // Wait for the scrolling to complete (2s for the transition)
-                        setTimeout(() => {
-                            // Make video2 visible and start playing
-                            video2.style.visibility = 'visible'; // Make video2 visible immediately
-                            video2.style.transform = 'translateX(0%)'; // Bring video2 to the screen
-
-                            // Set video2's playback position to 2 seconds (start from 2 seconds)
-                            video2.currentTime = 2; // Start video 2 from 2 seconds
-                            video2.play().then(() => {
-                                console.log("Video 2 is playing from 2 seconds");
-                            }).catch((error) => {
-                                console.error("Error starting video 2:", error);
-                            });
-                        }, 0); // The duration of the scrolling transition
-                    });
-
-                    // When video2 ends, reset it and bring video1 back
-                    video2.addEventListener('ended', () => {
-                        // Reset video2's position and hide it
-                        video2.style.transform = 'translateX(100%)'; // Move video2 off-screen to the right
-
-
-                        // Bring video1 back to the screen
-                        video1.style.transform = 'translateX(0%)'; // Move video1 back to its position
-                        video1.play(); // Play video1 again
-                    });
-                }
-
-
-
-                // JavaScript to detect scroll and add 'visible' class for image boxes
-                window.addEventListener('scroll', function () {
-                    var navbar = document.querySelector('.header-nav');
-                    var plywoodSection = document.querySelector('.plywood-section');
-                    var plywoodContent = document.querySelector('.plywood-content');
-                    var plywoodDescription = document.querySelector('.plywood-description');
-                    var box2 = document.querySelector('.box2');
-                    var imageBoxes = document.querySelectorAll('.box');
-
-                    // Add 'scrolled' class to navbar
-                    if (window.scrollY > 50) {
-                        navbar.classList.add('scrolled');
-                    } else {
-                        navbar.classList.remove('scrolled');
-                    }
-
-                    // Handle plywood section visibility
-                    var plywoodSectionTop = plywoodSection.getBoundingClientRect().top;
-                    var windowHeight = window.innerHeight;
-
-                    if (plywoodSectionTop < windowHeight * 0.7) {
-                        plywoodContent.classList.add('visible');
-                    } else {
-                        plywoodContent.classList.remove('visible');
-                    }
-
-                    if (plywoodSectionTop < windowHeight * 0.5) {
-                        plywoodDescription.classList.add('visible');
-                    } else {
-                        plywoodDescription.classList.remove('visible');
-                    }
-
-                    // Handle visibility of box2 first
-                    var box2Top = box2.getBoundingClientRect().top;
-                    if (box2Top < windowHeight * 0.7) {
-                        box2.classList.add('visible');
-                    } else {
-                        box2.classList.remove('visible');
-                    }
-
-                    // Handle visibility of all other boxes after box2
-                    imageBoxes.forEach(function (box) {
-                        var boxTop = box.getBoundingClientRect().top;
-                        if (boxTop < windowHeight * 0.5) {
-                            box.classList.add('visible');
-                        } else {
-                            box.classList.remove('visible');
-                        }
-                    });
-                });
-            });
-
-        </script>
+        <script type="text/javascript" src="./script/index.js"></script>
     </head>
 <body>
   
@@ -109,7 +15,7 @@
     <div class="topnav">
         <!-- Left part: Logo and Firm Name -->
         <div class="logo">
-            <img src="assets/images/logo.svg" alt="Logo" class="logo-img"> <!-- Add your logo image path here -->
+            <img src="./assets/images/logo.svg" alt="Logo" class="logo-img"> <!-- Add your logo image path here -->
         </div>
         <!-- Right part: Links to other pages -->
         <div class="nav-links">
@@ -149,19 +55,19 @@
     <div class="image-box-container">
         <div class="box">
             <div class="image-box left-box">
-                <img src="assets/images/plywood.svg" alt="Box 1">
+                <img src="./assets/images/plywood.svg" alt="Box 1">
             </div>
             <p class="image-text">Plywood</p> <!-- Add your text here -->
         </div>
         <div class="box2">
             <div class="image-box center-box">
-                <img src="assets/images/vinear.svg" alt="Box 2">
+                <img src="./assets/images/vinear.svg" alt="Box 2">
             </div>
             <p class="image-text">Veneer</p> <!-- Add your text here -->
         </div>
         <div class="box">
             <div class="image-box right-box">
-                <img src="assets/images/mica.svg" alt="Box 3">
+                <img src="./assets/images/mica.svg" alt="Box 3">
             </div>
             <p class="image-text">Mica</p> <!-- Add your text here -->
         </div>
@@ -175,37 +81,37 @@
         <!-- Brand Box 1 -->
         <div class="brand-box">
             <div class="brand-logo">
-                <img src="assets/images/logo.svg" alt="Brand 1">
+                <img src="./assets/images/logo.svg" alt="Brand 1">
             </div>
         </div>
         <!-- Brand Box 2 -->
         <div class="brand-box">
             <div class="brand-logo">
-                <img src="assets/images/logo.svg" alt="Brand 2">
+                <img src="./assets/images/logo.svg" alt="Brand 2">
             </div>
         </div>
         <!-- Brand Box 3 -->
         <div class="brand-box">
             <div class="brand-logo">
-                <img src="assets/images/logo.svg" alt="Brand 3">
+                <img src="./assets/images/logo.svg" alt="Brand 3">
             </div>
         </div>
         <!-- Brand Box 4 -->
         <div class="brand-box">
             <div class="brand-logo">
-                <img src="assets/images/logo.svg" alt="Brand 4">
+                <img src="./assets/images/logo.svg" alt="Brand 4">
             </div>
         </div>
         <!-- Brand Box 5 -->
         <div class="brand-box">
             <div class="brand-logo">
-                <img src="assets/images/logo.svg" alt="Brand 5">
+                <img src="./assets/images/logo.svg" alt="Brand 5">
             </div>
         </div>
         <!-- Brand Box 6 -->
         <div class="brand-box">
             <div class="brand-logo">
-                <img src="assets/images/logo.svg" alt="Brand 6">
+                <img src="./assets/images/logo.svg" alt="Brand 6">
             </div>
         </div>
     </div>
