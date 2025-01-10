@@ -42,7 +42,7 @@ footer {
 }
 
 .footer-section a:hover {
-    color: #b88e2f;
+    color: var(--color-brown);
 }
 
 .footer-section ul li {
@@ -58,7 +58,7 @@ footer {
 }
 
 .footer-section ul li a:hover {
-    color: #b88e2f;
+    color: var(--color-brown);
 }
 
 .footer-section ul li a i {
@@ -72,7 +72,7 @@ footer {
 }
 
 .social-media i:hover {
-    color: #b88e2f;
+    color: var(--color-brown);
 }
 
 .social-media ul {
@@ -90,7 +90,7 @@ footer {
 }
 
 .social-media ul li a:hover {
-    color: #b88e2f;
+    color: var(--color-brown);
 }
 
 .copyright {

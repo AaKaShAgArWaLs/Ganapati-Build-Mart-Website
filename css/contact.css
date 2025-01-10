@@ -1,0 +1,143 @@
+@import url('colors.css');
+body {
+    font-family: "Poppins", sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+.contact {
+    background-color: #fff;
+    padding: 50px;
+}
+.hero {
+    position: relative;
+    height: 500px;
+    background-color: var(--color-light-gray);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero img {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+}
+.video-text {
+    position: absolute;
+    color: var(--color-white);
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    z-index: 10;
+    font-family: "Calendas-Plus";
+    background-color: var(--color-light-grey)
+}
+.container h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #333;
+    font-weight: 600;
+}
+
+.contact-wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.contact-form {
+    background-color: #fafafa;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.contact-form h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #444;
+}
+
+.contact-form .form-group {
+    margin-bottom: 15px;
+}
+
+.contact-form label {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.contact-form input, 
+.contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+
+.contact-form button {
+    border: 2px solid var(--color-dark-gray);
+    color: var(--color-dark-gray);
+    padding: 10px 20px;
+    
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    
+}
+
+button::before {
+    content: '';
+    width: 0;
+    height: 500%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+    background: var(--color-dark-gray);
+    transition: .5s ease;
+    display: block;
+    z-index: -1;
+}
+
+button:hover::before {
+    width: 105%;
+}
+
+button:hover {
+    color: var(--color-cream);
+}
+
+
+
+.contact-info {
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.contact-info h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #444;
+}
+
+.contact-info p {
+    font-size: 16px;
+    margin-bottom: 10px;
+    line-height: 25px;
+}
+
+.contact-info i {
+    color: #b88e2f;
+    margin-right: 10px;
+}

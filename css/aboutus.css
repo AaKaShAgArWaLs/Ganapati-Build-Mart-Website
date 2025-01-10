@@ -108,7 +108,7 @@ header {
 }
 
 .about-content {
-    color: var(--color-light-gray-text);
+    color: var(--color-dark-gray);
     line-height: 1.8;
 }
 
