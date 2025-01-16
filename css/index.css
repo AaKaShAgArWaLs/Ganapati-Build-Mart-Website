@@ -157,6 +157,7 @@ button {
     z-index: 1;
     font-family: inherit;
     color: var(--color-dark-gray);
+    cursor: pointer;
 }
 
 button::before {
