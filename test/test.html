@@ -1,48 +1,118 @@
 <!DOCTYPE html>
-<html>
-    <head>
-    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale = 1">
-    <title>CSS Card Flip</title>
-    <link href="./styles.css" type="text/css" rel="stylesheet">
-    </head>
-
-    <body>
-        <div class="maincontainer">
-            <div class="back">
-                <h2>Copywriting</h2>
-                <p>Introduction to Copywriting’ workshop focuses on the theory and processes of professional copywriting as applied to persuasion, reasoning, and rhetoric. This workshop is best-suited to learning how to write and think about consumer-driven functions.</p>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ganapati Build Mart - Shop</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../css/Navbar.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="./styles.css">
+    <script type="text/javascript" src="../script/index.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <section class="header-nav">
+        <div class="topnav">
+            <div class="logo">
+                <img src="../assets/images/logo.svg" alt="Logo" class="logo-img">
             </div>
-            <div class="front">
-                <div class="image">
-                <img src="https://i.postimg.cc/nhG8H3X6/copywriting.jpg">
-                <h2>Copywriting</h2>
-                </div>
-            </div>
-        </div>
-        <div class="maincontainer">
-            <div class="back">
-                <h2>Content Marketing</h2>
-                <p>Introduction to Content Marketing workshop focuses on building content frameworks that are designed for and directed at communication engagement. This interdisciplinary workshop is best-suited to learning visual and written communication strategies.</p>
-            </div>
-            <div class="front">
-                <div class="image">
-                <img src="https://i.postimg.cc/ydrv1ZXq/contentmarketing.jpg">
-                <h2>Content Marketing</h2>
-                </div>
+            <div class="nav-links">
+                <a href="/index.html">Home</a>
+                <a href="/Shop.html">Shop</a>
+                <a href="/About.html">About</a>
+                <a href="/Contact.html">Contact</a>
             </div>
         </div>
-        <div class="maincontainer">
-            <div class="back">
-                <h2>Web Writing</h2>
-                <p>Introduction to Web-Writing workshop focuses on building creative and systemic digital content through online user experiences that benefit people and robots. This workshop is best-suited to creating content for digital platforms and devices — websites, mobile, game consoles, and virtual reality engines.</p>
-            </div>
-            <div class="front">
-                <div class="image">
-                <img src="https://i.postimg.cc/ZqbG0630/webwriting.jpg">
-                <h2>Web Writing</h2>
-                </div>
-            </div>
-        </div>        
+    </section>
 
-    </body>
+    <!-- Shop Content -->
+    <div class="shop-header">
+        <h1>Shop</h1>
+        <div class="breadcrumb">Home > Shop</div>
+    </div>
+
+    <div class="filter-section">
+        <div class="filter-options">
+            <button>Filter</button>
+            <div class="view-options">
+                <button>⊞</button>
+                <button>≣</button>
+            </div>
+            <span>Showing 1-16 of 32 results</span>
+        </div>
+        <div class="sort-options">
+            <select>
+                <option>Default</option>
+                <option>Price: Low to High</option>
+                <option>Price: High to Low</option>
+            </select>
+        </div>
+      </div>
+
+    <div class="product-grid">
+        <!-- Product Card -->
+        <div class="product-card">
+            <img src="../assets/images/aboutus.svg" alt="Product">
+            <div class="product-badge sale">-30%</div>
+            <div class="product-info">
+                <h3 class="product-title">Product Name</h3>
+                <div class="product-category">Category</div>
+            </div>
+            <div class="product-actions">
+
+                <button class="action-button" title="Add to wishlist"><i class="fas fa-heart"></i></button>
+                <button class="action-button" title="Share"><i class="fas fa-share-alt"></i></button>
+
+            </div>
+        </div>
+        <!-- Repeat product-card for more products -->
+    </div>
+
+    <div class="pagination">
+        <button class="active">1</button>
+        <button>2</button>
+        <button>3</button>
+        <button>Next</button>
+    </div>
+
+    <!-- Features Section -->
+
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Ganapati Build Mart</h3>
+                <h4>Contact Information</h4>
+                <p><strong>Address:</strong> Canal Road, Behind J K Petrol Pump,<br>
+                    Brahmani Tarang,<br>
+                    Vedvyas, Rourkela - 769004</p>
+                <p><strong>Email:</strong> <a href="mailto:gbmrkl@gmail.com">gbmrkl@gmail.com</a></p>
+                <p><strong>Phone:</strong> <a href="tel:+919437040874">+91 9437040874</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>Links</h3>
+                <ul>
+                    <li><a href="/About.html">About Us</a></li>
+                    <li><a href="/shop.html">Products</a></li>
+                    <li><a href="/contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section social-media">
+                <h3>Follow Us</h3>
+                <ul>
+                    <li><a href="https://www.facebook.com/gbmrkl/" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a></li>
+                    <li><a href="https://in.linkedin.com/in/rajesh-agrawal-06325b4" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                    <li><a href="https://www.justdial.com/jdmart/Rourkela/Ganapati-Build-Mart-Near-By-Morvi-Showroom-Brahmani-Tarang/9999PX661-X661-190216160044-R5U5_BZDET/catalogue" target="_blank"><i class="fa-solid fa-globe"></i> Just Dial</a></li>
+                    <li><a href="https://www.indiamart.com/ganapati-build-mart/" target="_blank"><i class="fa-solid fa-globe"></i> India Mart</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">2025 Ganapati Build Mart. All rights reserved</div>
+    </footer>
+
+    <script src="./script.js"></script>
+</body>
 </html>

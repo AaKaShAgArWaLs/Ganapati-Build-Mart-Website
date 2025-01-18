@@ -15,4 +15,9 @@
     --color-light-gray-text: #9f9f9f;
     --color-white: #ffffff;
     --color-border: #e8e8e8;
+    --primary-color: rgb(182, 142, 81);
+    --background-light: rgb(254, 244, 236);
+    --text-color: #333;
+    --sale-badge: #ff0000;
+    --new-badge: #2EC1AC;
 }
