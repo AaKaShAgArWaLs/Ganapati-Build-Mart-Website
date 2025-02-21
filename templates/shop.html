@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Navbar.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/shop.css') }}">
+    <script type="text/javascript" src="{{ url_for('static', filename='script/index.js')}}"></script>
+</head>
+<body>
+
+<section class="header-nav">
+    <div class="topnav">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="Logo" class="logo-img">
+        </div>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/shop">Shop</a>
+            <a href="/about">About</a>
+            <a href="/contact">Contact</a>
+        </div>
+    </div>
+</section>
+
+<div class="hero">
+    <img src="{{ url_for('static', filename='images/shop.svg')}}" alt="Modern Sofa"/>
+    <div class="video-text">
+        <h1>Shop</h1>
+    </div>
+</div>
+
+<!-- Filter Section -->
+<!-- Sorting and Filtering Section -->
+<div class="filter-section">
+    <form method="get" action="/shop" class="filter-options">
+        <label for="sort-by">Sort by: </label>
+        <select name="sort" id="sort-by">
+            <option value="product_name" {% if sort_by == 'product_name' %}selected{% endif %}>Product Name</option>
+            <option value="category" {% if sort_by == 'category' %}selected{% endif %}>Category</option>
+        </select>
+        
+        <label for="sort-order">Order: </label>
+        <select name="order" id="sort-order">
+            <option value="ASC" {% if sort_order == 'ASC' %}selected{% endif %}>Ascending</option>
+            <option value="DESC" {% if sort_order == 'DESC' %}selected{% endif %}>Descending</option>
+        </select>
+        
+        <!-- Category Filter -->
+        <label for="category">Category: </label>
+        <select name="category" id="category">
+            <option value="">All Categories</option>
+            {% for category in categories %}
+                <option value="{{ category['category'] }}" {% if category['category'] == category %}selected{% endif %}>{{ category['category'] }}</option>
+            {% endfor %}
+        </select>
+        
+        <!-- Brand Filter -->
+        <label for="brand">Brand: </label>
+        <select name="brand" id="brand">
+            <option value="">All Brands</option>
+            {% for brand in brands %}
+                <option value="{{ brand['brand'] }}" {% if brand['brand'] == brand %}selected{% endif %}>{{ brand['brand'] }}</option>
+            {% endfor %}
+        </select>
+        
+        <button type="submit">Sort</button>
+    </form>
+</div>
+
+
+<!-- Product Grid -->
+<!-- Product Grid -->
+<div class="product-grid">
+    {% if products %}
+        {% for product in products %}
+            <a href="/contact" class="product-card" title="Click for Enquiry">
+                <img src="{{ product.image_url }}" alt="Product Image">
+                <div class="product-info">
+                    <h3 class="product-title">{{ product.product_name }}</h3>
+                    <div class="product-brand">{{ product.brand }}</div>
+                    <div class="product-category">{{ product.category }}</div>
+                    
+                </div>
+            </a>
+        {% endfor %}
+    {% else %}
+        <p>No products found</p>
+    {% endif %}
+</div>
+
+
+<!-- Pagination -->
+<div class="pagination">
+    {% if current_page > 1 %}
+        <a href="/shop?page={{ current_page - 1 }}&sort={{ sort_by }}&order={{ sort_order }}">Previous</a>
+    {% endif %}
+    
+    {% for page_num in range(1, total_pages + 1) %}
+        <a href="/shop?page={{ page_num }}&sort={{ sort_by }}&order={{ sort_order }}" {% if page_num == current_page %}class="active"{% endif %}>{{ page_num }}</a>
+    {% endfor %}
+    
+    {% if current_page < total_pages %}
+        <a href="/shop?page={{ current_page + 1 }}&sort={{ sort_by }}&order={{ sort_order }}">Next</a>
+    {% endif %}
+</div>
+
+<footer>
+  <div class="footer-content">
+      <div class="footer-section">
+          <h3>Ganapati Build Mart</h3>
+          <h4>Contact Information</h4>
+          <p><strong>Address:</strong> Canal Road, Behind J K Petrol Pump,<br>
+              Brahmani Tarang,<br>
+              Vedvyas, Rourkela - 769004</p>
+          <p><strong>Email:</strong> <a href="mailto:gbmrkl@gmail.com">gbmrkl@gmail.com</a></p>
+          <p><strong>Phone:</strong> <a href="tel:+919437040874">+91 9437040874</a></p>
+      </div>
+      <div class="footer-section">
+          <h3>Links</h3>
+          <ul>
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('about') }}">About Us</a></li>
+            <li><a href="{{ url_for('shop') }}">Products</a></li>
+            <li><a href="{{ url_for('contact') }}">Contact</a></li>
+          </ul>
+      </div>
+      <div class="footer-section social-media">
+          <h3>Follow Us</h3>
+          <ul>
+              <li><a href="https://www.facebook.com/gbmrkl/" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a></li>
+              <li><a href="https://in.linkedin.com/in/rajesh-agrawal-06325b4" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+              <li><a href="https://www.justdial.com/jdmart/Rourkela/Ganapati-Build-Mart-Near-By-Morvi-Showroom-Brahmani-Tarang/9999PX661-X661-190216160044-R5U5_BZDET/catalogue" target="_blank"><i class="fa-solid fa-globe"></i> Just Dial</a></li>
+              <li><a href="https://www.indiamart.com/ganapati-build-mart/" target="_blank"><i class="fa-solid fa-globe"></i> India Mart</a></li>
+          </ul>
+      </div>
+  </div>
+  <div class="copyright">2025 Ganapati Build Mart. All rights reserved</div>
+</footer>
+
+</body>
+</html>

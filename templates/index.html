@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/Navbar.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}">
+        <script type="text/javascript" src="{{ url_for('static', filename='script/index.js') }}"></script>
+    </head>
+    <body>
+        <section class="header-nav">
+            <div class="topnav">
+                <div class="logo">
+                    <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="Logo" class="logo-img">
+                </div>
+                <div class="nav-links">
+                    <a href="/">Home</a>
+                    <a href="/shop">Shop</a>
+                    <a href="/about">About</a>
+                    <a href="/contact">Contact</a>
+                </div>
+            </div>
+        </section>
+
+        <div class="video-container">
+            <video id="video1" autoplay muted>
+                <source src="{{ url_for('static', filename='assets/videos/vid1.mp4') }}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <video id="video2" preload="auto" muted>
+                <source src="{{ url_for('static', filename='assets/videos/vid2.mp4') }}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <!-- Add this div for the centered text -->
+            <div class="video-text">
+                <h1>Ganapati Build Mart</h1> <!-- Customize the text -->
+            </div>
+        </div>
+
+        <!-- New Section: Plywood -->
+        <section class="plywood-section">
+            <div class="plywood-content">
+                <h2>Home Interior and Hardware Products</h2>
+            </div>
+            <div class="plywood-description">
+                <p>We offer top-quality home design products from leading brands</p><p> to help you craft beautiful and inspired living spaces.</p>
+            </div>
+            <!-- New section for 3 image boxes -->
+            <div class="image-box-container">
+                <div class="box">
+                    <div class="image-box left-box">
+                        <a href="{{ url_for('shop') }}"><img src="{{ url_for('static', filename='images/plywood.svg') }}" alt="Box 1"></a>
+                    </div>
+                    <p class="image-text">Plywood</p> <!-- Add your text here -->
+                </div>
+                <div class="box2">
+                    <div class="image-box center-box">
+                        <a href="{{ url_for('shop') }}"><img src="{{ url_for('static', filename='images/Laminates.svg') }}" alt="Box 2"></a>
+                    </div>
+                    <p class="image-text">Laminates</p> <!-- Add your text here -->
+                </div>
+                <div class="box">
+                    <div class="image-box right-box">
+                        <a href="{{ url_for('shop') }}"><img src="{{ url_for('static', filename='images/hardware.svg') }}" alt="Box 3"></a>
+                    </div>
+                    <p class="image-text">Hardware</p> <!-- Add your text here -->
+                </div>
+            </div>
+            <button onclick="window.location.href='/shop'">Load More Products</button>
+        </section>
+
+        <section class="brands-with-us">
+            <h2>Brands With Us</h2>
+            <div class="brand-container">
+                {% for brand in brands %}
+                    <div class="brand-box">
+                        <div class="brand-logo">
+                            <img src="{{ url_for('static', filename='images/logos/' + brand['url']) }}" alt="{{ brand['name'] }}">
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+        
+
+        <footer>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Ganapati Build Mart</h3>
+                    <h4>Contact Information</h4>
+                    <p><strong>Address:</strong> Canal Road, Behind J K Petrol Pump,<br>
+                        Brahmani Tarang,<br>
+                        Vedvyas, Rourkela - 769004</p>
+                    <p><strong>Email:</strong> <a href="mailto:gbmrkl@gmail.com">gbmrkl@gmail.com</a></p>
+                    <p><strong>Phone:</strong> <a href="tel:+919437040874">+91 9437040874</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Links</h3>
+                    <ul>
+
+                        <li><a href="{{ url_for('home') }}">Home</a></li>
+                        <li><a href="{{ url_for('about') }}">About Us</a></li>
+                        <li><a href="{{ url_for('shop') }}">Products</a></li>
+                        <li><a href="{{ url_for('contact') }}">Contact</a></li>
+                        <li><a href="{{ url_for('login') }}">Admin</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section social-media">
+                    <h3>Follow Us</h3>
+                    <ul>
+                        <li><a href="https://www.facebook.com/gbmrkl/" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a></li>
+                        <li><a href="https://in.linkedin.com/in/rajesh-agrawal-06325b4" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                        <li><a href="https://www.justdial.com/jdmart/Rourkela/Ganapati-Build-Mart-Near-By-Morvi-Showroom-Brahmani-Tarang/9999PX661-X661-190216160044-R5U5_BZDET/catalogue" target="_blank"><i class="fa-solid fa-globe"></i> Just Dial</a></li>
+                        <li><a href="https://www.indiamart.com/ganapati-build-mart/" target="_blank"><i class="fa-solid fa-globe"></i> India Mart</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">2025 Ganapati Build Mart. All rights reserved</div>
+        </footer>
+    </body>
+</html>

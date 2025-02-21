@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Furniro - Home</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/Navbar.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/aboutus.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}">
+        <script type="text/javascript" src="{{ url_for('static', filename='script/index.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='script/aboutus.js') }}"></script>
+</head>
+<body>
+    <section class="header-nav">
+        <div class="topnav">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="Logo" class="logo-img">
+            </div>
+            <div class="nav-links">
+                <a href="/">Home</a>
+                <a href="/shop">Shop</a>
+                <a href="/about">About</a>
+                <a href="/contact">Contact</a>
+            </div>
+        </div>
+    </section>
+
+    <div class="hero">
+        <img src="{{ url_for('static', filename='images/aboutus.svg')}}" alt="Modern Sofa"/>
+        <div class="video-text">
+            <h1>About Us</h1> <!-- Customize the text -->
+        </div>
+    </div>
+
+    <div class="stats">
+        <div class="stat-box">
+            <div class="stat-number">0</div>
+            <div class="stat-label">Year Experience</div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-number">0</div>
+            <div class="stat-label">Brands With Us</div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-number">0</div>
+            <div class="stat-label">Products Sold</div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-number">0</div>
+            <div class="stat-label">Variant Products</div>
+        </div>
+    </div>
+    
+
+    
+    
+    <div class="about-section">
+        <div class="about-content">
+            <p>Ganapati Build Mart was founded in 2015 by Mr. 
+                Rajesh Kumar Agarwal in Rourkela, Odisha, with the vision to provide high-quality building materials to meet the growing demands of the construction industry. 
+                Over the years, we have built a solid reputation for offering premium products such as Greenply Premium, Ecotech MR, Green Film Faced Shuttering Plywood, Action Tesa HDHMR, MDF, Commercial Plywood, and a wide range of hardware and fittings. 
+                Our commitment to quality and customer satisfaction has made us a trusted name in the region for both residential and commercial construction needs.</p>
+
+            <br>
+            <p>At Ganapati Build Mart, our mission is to offer exceptional customer service, timely delivery, and expert advice. We aim to build long-term relationships with our clients by understanding their specific requirements and providing the best solutions. Whether you’re a contractor working on a large-scale project or a homeowner in need of high-quality materials, we cater to all construction needs with a commitment to excellence. With our extensive experience and focus on customer satisfaction, Ganapati Build Mart is proud to serve the people of Rourkela and Odisha, helping them turn their construction visions into reality.</p>
+        </p>
+        </div>
+        <div class="about-features">
+            <div class="about-feature">
+                <i class="fas fa-trophy"></i>
+                <div class="feature-text">
+                    <h4>Top Quality</h4>
+                    <p>Crafted from premium materials</p>
+                </div>
+            </div>
+            <div class="about-feature">
+                <i class="fas fa-thumbs-up"></i>
+                <div class="feature-text">
+                    <h4>Customer Satisfaction</h4>
+                    <p>We prioritize your needs</p>
+                </div>
+            </div>
+            <div class="about-feature">
+                <i class="fas fa-clock"></i>
+                <div class="feature-text">
+                    <h4>Always On Time</h4>
+                    <p>Timely delivery guaranteed</p>
+                </div>
+            </div>
+            <div class="about-feature">
+                <i class="fas fa-handshake"></i>
+                <div class="feature-text">
+                    <h4>Reliable Partnerships</h4>
+                    <p>Building trust with every deal</p>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Ganapati Build Mart</h3>
+                <h4>Contact Information</h4>
+                <p><strong>Address:</strong> Canal Road, Behind J K Petrol Pump,<br>
+                    Brahmani Tarang,<br>
+                    Vedvyas, Rourkela - 769004</p>
+                <p><strong>Email:</strong> <a href="mailto:gbmrkl@gmail.com">gbmrkl@gmail.com</a></p>
+                <p><strong>Phone:</strong> <a href="tel:+919437040874">+91 9437040874</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>Links</h3>
+                <ul>
+                    <li><a href="{{ url_for('home') }}">Home</a></li>
+                    <li><a href="{{ url_for('about') }}">About Us</a></li>
+                    <li><a href="{{ url_for('shop') }}">Products</a></li>
+                    <li><a href="{{ url_for('contact') }}">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section social-media">
+                <h3>Follow Us</h3>
+                <ul>
+                    <li><a href="https://www.facebook.com/gbmrkl/" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a></li>
+                    <li><a href="https://in.linkedin.com/in/rajesh-agrawal-06325b4" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                    <li><a href="https://www.justdial.com/jdmart/Rourkela/Ganapati-Build-Mart-Near-By-Morvi-Showroom-Brahmani-Tarang/9999PX661-X661-190216160044-R5U5_BZDET/catalogue" target="_blank"><i class="fa-solid fa-globe"></i> Just Dial</a></li>
+                    <li><a href="https://www.indiamart.com/ganapati-build-mart/" target="_blank"><i class="fa-solid fa-globe"></i> India Mart</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">2025 Ganapati Build Mart. All rights reserved</div>
+    </footer>
+    
+    
+</body>
+</html>

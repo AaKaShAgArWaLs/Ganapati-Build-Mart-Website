@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Product</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/new_prod.css')}}">
+    <style>
+        .new-category-input {
+            display: none;
+            margin-top: 10px;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='assets/images/logo.svg') }}" alt="Admin Logo">
+        </div>
+        <nav>
+            <div class="nav-item" onclick="products()"><i class="fas fa-box"></i>Products</div>
+            <div class="nav-item" onclick="brands()"><i class="fas fa-tags"></i>Brands</div>
+            <div class="nav-item" onclick="users()"><i class="fas fa-users"></i>Users</div>
+            <div class="nav-item active" onclick="createNewProduct()"><i class="fa-solid fa-plus"></i>New Product</div>
+        </nav>
+    </div>
+
+    <main class="main-content">
+        <div class="form-container">
+            <h2>{% if product_to_edit %}Edit Product{% else %}Add Product{% endif %}</h2>
+            <form action="/admin_dashboard" method="POST,GET">
+                {% if product_to_edit %}
+                    <input type="hidden" name="product_id" value="{{ product_to_edit['id'] }}">
+                {% endif %}
+
+                <label for="name">Name:</label>
+                <input type="text" name="product_name" id="name" placeholder="Product Name" value="{{ product_to_edit['product_name'] if product_to_edit else '' }}" required>
+                
+                <label for="image_url">Image Url:</label>
+                <input type="text" name="image_url" placeholder="Image URL" value="{{ product_to_edit['image_url'] if product_to_edit else '' }}" required>
+                
+                <label for="description">Description:</label>
+                <input type="text" name="description" placeholder="Description" value="{{ product_to_edit['description'] if product_to_edit else '' }}">
+
+                <label for="category">Category:</label>
+                <select name="category" id="category" onchange="toggleNewCategoryInput()" required>
+                    <option value="" disabled {% if not product_to_edit %}selected{% endif %}>Select a Category</option>
+
+                    {% for category in categories %}
+                        <option value="{{ category['category'] }}" {% if category['category'] == category %}selected{% endif %}>{{ category['category'] }}</option>
+                    {% endfor %}
+                    <option value="new">+ Add New Category</option>
+                </select>
+
+                <div id="newCategoryInput" class="new-category-input">
+                    <label for="new_category">New Category Name:</label>
+                    <input type="text" id="new_category" name="new_category" placeholder="Enter new category name">
+                </div>
+
+                <button type="submit" name="{% if product_to_edit %}edit_product{% else %}add_product{% endif %}">
+                    {% if product_to_edit %}Update Product{% else %}Add Product{% endif %}
+                </button>
+            </form>
+        </div>
+    </main>
+
+    <script>
+        function toggleNewCategoryInput() {
+            const categorySelect = document.getElementById('category');
+            const newCategoryInput = document.getElementById('newCategoryInput');
+            
+            if (categorySelect.value === 'new') {
+                newCategoryInput.style.display = 'block';
+                document.getElementById('new_category').required = true;
+            } else {
+                newCategoryInput.style.display = 'none';
+                document.getElementById('new_category').required = false;
+            }
+        }
+
+        function products() {
+            window.location.href = '/admin/products';
+        }
+        
+        function users() {
+            window.location.href = '/api/users';
+        }
+        
+        function createNewProduct() {
+            window.location.href = '/admin_dashboard?add_product';
+        }
+        function brands() {
+            window.location.href = '/admin/brands';
+        }
+    </script>
+</body>
+</html>

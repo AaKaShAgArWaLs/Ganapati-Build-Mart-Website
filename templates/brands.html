@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Brands</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='assets/images/logo.svg') }}" alt="Admin Logo">
+        </div>
+        <nav>
+            <div class="nav-item" onclick="products()"><i class="fas fa-box"></i> Products</div>
+            <div class="nav-item active" onclick="brands()"><i class="fas fa-tags"></i> Brands</div>
+            <div class="nav-item" onclick="users()"><i class="fas fa-users"></i> Users</div>
+            <div class="nav-item" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</div>
+        </nav>
+    </div>
+
+    <main class="main-content">
+        <div class="header">
+            <h1>Brands List</h1>
+        </div>
+
+        <!-- Add New Brand Form -->
+        <div class="add-brand-form">
+            <h3>Add New Brand</h3>
+            <form action="/brands/add" method="POST">
+                <input type="text" name="name" placeholder="Brand Name" required>
+                <input type="text" name="url" placeholder="Image Path (e.g., static/assets/images/brands/logo.svg)" required>
+                <button type="submit" class="btn btn-new">Add Brand</button>
+            </form>
+        </div>
+
+        <!-- Brands Search Bar -->
+        <div class="search-bar">
+            <i class="fas fa-search"></i>
+            <input type="text" id="search" placeholder="Search Brands" onkeyup="filterBrands()">
+        </div>
+
+        <!-- Brand Cards -->
+        <div class="brand-grid">
+            {% for brand in brands %}
+                <div class="brand-card">
+                    <h3 class="brand-title">{{ brand.brand }}</h3>
+                    <p class="brand-description">
+                        <img src="{{ url_for('static', filename='images/logos/' + brand['url']) }}" alt="{{ brand.brand }}" width="200" >
+                    </p>
+                    <div class="button-group">
+                        <a href="/brands/delete/{{ brand['id'] }}" class="btn btn-delete" onclick="return confirm('Are you sure?')">Delete</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </main>
+
+    <script>
+        function logout() {
+            window.location.href = "/logout";
+        }
+
+        function products() {
+            window.location.href = '/admin/products';
+        }
+
+        function brands() {
+            window.location.href = '/brands';
+        }
+
+        function users() {
+            window.location.href = '/api/users';
+        }
+
+        // Live Search Filter for Brands
+        function filterBrands() {
+            let input = document.getElementById("search").value.toLowerCase();
+            let brandCards = document.getElementsByClassName("brand-card");
+
+            for (let i = 0; i < brandCards.length; i++) {
+                let brandTitle = brandCards[i].getElementsByClassName("brand-title")[0].textContent.toLowerCase();
+                brandCards[i].style.display = brandTitle.includes(input) ? "block" : "none";
+            }
+        }
+    </script>
+
+</body>
+</html>

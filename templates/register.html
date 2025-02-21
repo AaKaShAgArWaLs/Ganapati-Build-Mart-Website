@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Navbar.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/auth.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css')}}">
+    <title>Login</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+    </head>
+    <body>
+    
+    
+        <section class="header-nav">
+            <div class="topnav">
+                <div class="logo">
+                    <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="Logo" class="logo-img">
+                </div>
+                <div class="nav-links">
+                    <a href="/">Home</a>
+                    <a href="/shop">Shop</a>
+                    <a href="/about">About</a>
+                    <a href="/contact">Contact</a>
+                </div>
+            </div>
+        </section>
+    
+    
+    
+        <div class="auth-container">
+            <div class="auth-box">
+                <h1 class="brand-title">JOURNEY GENIE</h1>
+                <p class="tagline">Wishes Granted, Trips Perfected</p>
+                <form action="home.html">
+                    <div class="form-group">
+                        <input type="text" name="username" required>
+                        <label>Email</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" name="password" required>
+                        <label>Password</label>
+                    </div>
+                    <button type="submit">Submit</button>
+
+                    <p class="tagline">Don't Have an account? <a class="link" href="index.html">Signup</a></p>
+                </form>
+            </div>
+        </div>
+    
+    </body>
+    </html>
+    
+    </body>
+    </html>
+    </body>
+    </html>
+    
+
