@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, session, jsonify
+from flask import Flask, render_template, request, redirect, url_for, session, jsonify, flash
 import mysql.connector
 from flask_cors import CORS  # Import CORS
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -8,10 +8,10 @@ app = Flask(__name__)
 application=app
 # Database connection details
 db_config = {
-    'host': 'localhost',
-    'user': 'root',
-    'password': '12345',  # Replace with your password
-    'database': 'product_db'
+    'host': '148.113.4.193',
+    'user': 'gbmartin_root',
+    'password': 'aakash@1609',  # Replace with your password
+    'database': 'gbmartin_product_db'
 }
 
 CORS(app)
@@ -199,70 +199,123 @@ def admin_dashboard():
     if not session.get('logged_in'):
         return redirect(url_for('login'))
     
-    connection = mysql.connector.connect(**db_config)
-    cursor = connection.cursor(dictionary=True)
+    # Optional: Check if user has admin role
+    # if not session.get('is_admin'):
+    #     flash('Access denied: Admin privileges required', 'error')
+    #     return redirect(url_for('home'))
     
-    if request.method == 'POST':  # Handling form submission for adding or editing a product
-        if 'add_product' in request.form:
-            product_name = request.form['product_name']
-            category = request.form['category']
-            image_url = request.form['image_url']
-            description = request.form['description']
-            if category == 'new':
-                category = request.form['new_category']
-            
-            # Insert product into the database
-            cursor.execute("""INSERT INTO products (product_name, category, image_url, description) 
-                            VALUES (%s, %s, %s, %s)""", 
-                            (product_name, category, image_url, description))
-            connection.commit()
-            return redirect(url_for('admin_dashboard'))
+    try:
+        connection = mysql.connector.connect(**db_config)
+        cursor = connection.cursor(dictionary=True)
         
-        elif 'edit_product' in request.form:  # Handling the edit form submission
-            product_id = request.form['product_id']
-            product_name = request.form['product_name']
-            category = request.form['category']
-            image_url = request.form['image_url']
-            description = request.form['description']
+        if request.method == 'POST':
+            # Handling form submission for adding a product
+            if 'add_product' in request.form:
+                product_name = request.form.get('product_name')
+                category = request.form.get('category')
+                image_url = request.form.get('image_url')
+                description = request.form.get('description')
+                
+                # Basic validation
+                if not all([product_name, category]):
+                    flash('Product name and category are required', 'error')
+                    return redirect(url_for('admin_dashboard'))
+                
+                # Handle new category
+                if category == 'new':
+                    new_category = request.form.get('new_category')
+                    if not new_category:
+                        flash('New category name is required', 'error')
+                        return redirect(url_for('admin_dashboard'))
+                    category = new_category
+                
+                # Insert product into the database
+                cursor.execute("""INSERT INTO products (product_name, category, image_url, description) 
+                                VALUES (%s, %s, %s, %s)""", 
+                                (product_name, category, image_url, description))
+                connection.commit()
+                flash('Product added successfully', 'success')
+                return redirect(url_for('admin_dashboard'))
             
-            # Update product in the database
-            cursor.execute("""
-                UPDATE products
-                SET product_name = %s, category = %s, image_url = %s, description = %s
-                WHERE id = %s
-            """, (product_name, category, image_url, description, product_id))
-            connection.commit()
-            return redirect(url_for('admin_dashboard'))
+            # Handling the edit form submission
+            elif 'edit_product' in request.form:
+                product_id = request.form.get('product_id')
+                product_name = request.form.get('product_name')
+                category = request.form.get('category')
+                image_url = request.form.get('image_url')
+                description = request.form.get('description')
+                
+                # Basic validation
+                if not all([product_id, product_name, category]):
+                    flash('Product ID, name, and category are required', 'error')
+                    return redirect(url_for('admin_dashboard'))
+                
+                # Handle new category
+                if category == 'new':
+                    new_category = request.form.get('new_category')
+                    if not new_category:
+                        flash('New category name is required', 'error')
+                        return redirect(url_for('admin_dashboard'))
+                    category = new_category
+                
+                # Update product in the database
+                cursor.execute("""
+                    UPDATE products
+                    SET product_name = %s, category = %s, image_url = %s, description = %s
+                    WHERE id = %s
+                """, (product_name, category, image_url, description, product_id))
+                connection.commit()
+                flash('Product updated successfully', 'success')
+                return redirect(url_for('admin_dashboard'))
 
-    # Handle "edit" or "delete" via query parameters
-    product_to_edit = None
-    if 'edit' in request.args:
-        product_id = request.args.get('edit')
-        cursor.execute("SELECT * FROM products WHERE id = %s", (product_id,))
-        product_to_edit = cursor.fetchone()
+        # Handle "edit" via query parameters
+        product_to_edit = None
+        if 'edit' in request.args:
+            product_id = request.args.get('edit')
+            # Validate product_id
+            if product_id and product_id.isdigit():
+                cursor.execute("SELECT * FROM products WHERE id = %s", (product_id,))
+                product_to_edit = cursor.fetchone()
+                if not product_to_edit:
+                    flash('Product not found', 'error')
 
-    # Handle "delete" via query parameters
-    if 'delete' in request.args:
-        product_id = request.args.get('delete')
-        cursor.execute("DELETE FROM products WHERE id = %s", (product_id,))
-        connection.commit()
-        return redirect(url_for('admin_products'))
+        # Handle "delete" via query parameters
+        if 'delete' in request.args:
+            product_id = request.args.get('delete')
+            # Validate product_id
+            if product_id and product_id.isdigit():
+                # Confirm the product exists before deleting
+                cursor.execute("SELECT id FROM products WHERE id = %s", (product_id,))
+                if cursor.fetchone():
+                    cursor.execute("DELETE FROM products WHERE id = %s", (product_id,))
+                    connection.commit()
+                    flash('Product deleted successfully', 'success')
+                else:
+                    flash('Product not found', 'error')
+                return redirect(url_for('admin_dashboard'))
 
-    # Fetch all products to display in the table
-    cursor.execute("SELECT * FROM products")
-    products = cursor.fetchall()
-    
-    # Fetch unique categories for the dropdown
-    cursor.execute("SELECT DISTINCT category FROM products WHERE category IS NOT NULL")
-    categories = cursor.fetchall()
-    
-    cursor.close()
-    connection.close()
-    
-    return render_template('new.html', 
-                         products=products, 
-                         product_to_edit=product_to_edit,
-                         categories=categories)  # Pass categories to template
+        # Fetch all products to display in the table
+        cursor.execute("SELECT * FROM products ORDER BY id DESC")
+        products = cursor.fetchall()
+        
+        # Fetch unique categories for the dropdown
+        cursor.execute("SELECT DISTINCT category FROM products WHERE category IS NOT NULL AND category != ''")
+        categories = cursor.fetchall()
+        
+        return render_template('new.html', 
+                               products=products, 
+                               product_to_edit=product_to_edit,
+                               categories=categories)
+                             
+    except mysql.connector.Error as err:
+        flash(f"Database error: {err}", 'error')
+        return redirect(url_for('admin_dashboard'))
+    finally:
+        if 'cursor' in locals() and cursor:
+            cursor.close()
+        if 'connection' in locals() and connection:
+            connection.close()
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -469,4 +522,4 @@ def delete_brand(brand_id):
     return redirect(url_for('brand'))  
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)

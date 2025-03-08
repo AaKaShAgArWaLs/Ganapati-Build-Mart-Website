@@ -13,10 +13,10 @@
             <img src="{{ url_for('static', filename='assets/images/logo.svg') }}" alt="Admin Logo">
         </div>
         <nav>
-            <div class="nav-item" onclick="products()"><i class="fas fa-box"></i> Products</div>
-            <div class="nav-item active" onclick="brands()"><i class="fas fa-tags"></i> Brands</div>
-            <div class="nav-item" onclick="users()"><i class="fas fa-users"></i> Users</div>
-            <div class="nav-item" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</div>
+            <div class="nav-item" onclick="products()"><i class="fas fa-box"></i>Products</div>
+            <div class="nav-item active" onclick="brands()"><i class="fas fa-tags"></i>Brands</div>
+            <div class="nav-item" onclick="users()"><i class="fas fa-users"></i>Users</div>
+            <div class="nav-item {% if not product_to_edit %}{% endif %}" onclick="createNewProduct()"><i class="fa-solid fa-plus"></i>New Product</div>
         </nav>
     </div>
 
@@ -58,21 +58,21 @@
     </main>
 
     <script>
-        function logout() {
-            window.location.href = "/logout";
-        }
-
         function products() {
             window.location.href = '/admin/products';
         }
-
+        
+        function users() {
+            window.location.href = '/api/users';
+        }
+        
+        function createNewProduct() {
+            window.location.href = '/admin_dashboard?add_product';
+        }
         function brands() {
             window.location.href = '/brands';
         }
 
-        function users() {
-            window.location.href = '/api/users';
-        }
 
         // Live Search Filter for Brands
         function filterBrands() {
